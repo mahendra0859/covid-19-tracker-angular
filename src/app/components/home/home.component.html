@@ -7,4 +7,12 @@
     [totalDeaths]="totalDeaths"
     [totalActive]="totalActive"
   ></app-case-card>
+  <div class="row">
+    <div class="col">
+      <google-chart [data]="columnChart" *ngIf="columnChart"></google-chart>
+    </div>
+    <div class="col">
+      <google-chart [data]="pieChart" *ngIf="pieChart"></google-chart>
+    </div>
+  </div>
 </div>
