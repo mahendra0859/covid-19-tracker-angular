@@ -1,30 +1,25 @@
 <div class="jumbotron bg-white text-center">
   <h1 class="display-4">Corona Covid-19 Tracker Country Wise</h1>
-  <p class="lead">
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellat,
-    temporibus optio, alias asperiores mollitia suscipit hic laudantium,
-    perferendis commodi ex velit. Et voluptatibus totam praesentium expedita
-    omnis, provident officia sequi facilis reiciendis neque esse itaque ut, quia
-    cupiditate natus autem dolor doloremque aliquid nam, deleniti aliquam?
-    Delectus dicta atque, aut a accusantium dolorem amet temporibus alias,
-    laborum, id labore et corrupti? Adipisci, aliquid nihil voluptatem ipsa
-    voluptates accusantium porro est totam nobis voluptatibus cupiditate sunt
-    soluta sapiente cum, molestiae dolorum quaerat placeat commodi delectus
-    voluptas inventore! Fuga obcaecati sequi est dolor assumenda. Inventore
-    quaerat sit quas blanditiis cumque debitis ea!
-  </p>
   <hr class="my-4" />
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias magni
-    quia maxime. Porro est tenetur ipsam. Modi, eveniet! Minima, quia aperiam
-    eos quas corrupti magni architecto consequatur quae iste optio cupiditate
-    veritatis ullam quidem quam sint pariatur ducimus nostrum voluptates atque.
-    Asperiores, quae praesentium nemo tenetur assumenda repellendus ad mollitia
-    voluptatibus reprehenderit, odio doloremque quod distinctio et rem facere
-    neque id ratione? Reprehenderit accusantium magnam, voluptatem consequuntur
-    quae ipsam minus quia est ut, necessitatibus dignissimos repellat saepe
-    nesciunt illum iste. Ipsam repudiandae eos quaerat accusantium saepe quidem
-    reiciendis aspernatur? Deserunt nisi saepe tenetur earum perspiciatis cum
-    illum ratione minus odit.
-  </p>
+  <div class="mx-auto">
+    <div class="form-group col-lg-5 mx-auto">
+      <label for="country">Select Country</label>
+      <select
+        class="form-control"
+        id="country"
+        #input
+        (change)="updateCases(input.value)"
+      >
+        <option [value]="country" *ngFor="let country of countries">{{
+          country
+        }}</option>
+      </select>
+    </div>
+  </div>
+  <app-case-card
+    [totalConfirmed]="totalConfirmed"
+    [totalRecovered]="totalRecovered"
+    [totalDeaths]="totalDeaths"
+    [totalActive]="totalActive"
+  ></app-case-card>
 </div>

@@ -7,6 +7,7 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { HomeComponent } from "./components/home/home.component";
 import { CountriesComponent } from "./components/countries/countries.component";
 import { HttpClientModule } from "@angular/common/http";
+import { CaseCardComponent } from './components/shared/case-card/case-card.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HttpClientModule } from "@angular/common/http";
     NavbarComponent,
     HomeComponent,
     CountriesComponent,
+    CaseCardComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

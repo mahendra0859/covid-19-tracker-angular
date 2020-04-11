@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
     this.dataService.getGlobalData().subscribe({
       next: (result) => {
         this.globalData = result;
+        console.log("globalData", this.globalData);
         result.forEach((cs) => {
           this.totalActive += cs.active;
           this.totalConfirmed += cs.confirmed;
