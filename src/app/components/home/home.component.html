@@ -7,6 +7,73 @@
     [totalDeaths]="totalDeaths"
     [totalActive]="totalActive"
   ></app-case-card>
+  <hr class="my-4" />
+  <div class="ui form">
+    <div class="inline fields">
+      <label for="cases">Select Case type:</label>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            name="cases"
+            checked=""
+            tabindex="0"
+            class="hidden"
+            value="c"
+            id="c"
+            #c
+            (click)="updateChart(c)"
+          />
+          <label for="c">Confirmed</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            name="cases"
+            tabindex="0"
+            class="hidden"
+            value="d"
+            id="d"
+            #d
+            (click)="updateChart(d)"
+          />
+          <label for="d">Deaths</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            name="cases"
+            tabindex="0"
+            class="hidden"
+            value="r"
+            id="r"
+            #r
+            (click)="updateChart(r)"
+          />
+          <label for="r">Recovered</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            name="cases"
+            tabindex="0"
+            class="hidden"
+            value="a"
+            id="a"
+            #a
+            (click)="updateChart(a)"
+          />
+          <label for="a">Active</label>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col">
       <google-chart [data]="columnChart" *ngIf="columnChart"></google-chart>

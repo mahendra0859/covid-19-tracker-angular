@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { GlobalDataSummary } from "../models/global-data";
+import { DateWiseData } from "../models/date-wise-global-data";
 
 @Injectable({
   providedIn: "root",
@@ -9,6 +10,8 @@ import { GlobalDataSummary } from "../models/global-data";
 export class DataServiceService {
   private globalDataUrl =
     "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/04-10-2020.csv";
+  private dateWiseGlobalDataUrl =
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
   constructor(private http: HttpClient) {}
 
   getGlobalData() {
@@ -44,5 +47,36 @@ export class DataServiceService {
         return data;
       })
     );
+  }
+
+  getDateWiseGlobalData() {
+    return this.http
+      .get(this.dateWiseGlobalDataUrl, { responseType: "text" })
+      .pipe(
+        map((result) => {
+          let rows = result.split("\n");
+          let dates = rows[0].split(/,(?=\S)/);
+          dates.splice(0, 4);
+          rows.splice(0, 1);
+          let data = {};
+          rows.forEach((row) => {
+            if (row) {
+              let cols = row.split(/,(?=\S)/);
+              let country = cols[1];
+              cols.splice(0, 4);
+              data[country] = [];
+              cols.forEach((value, index) => {
+                let dateWise: DateWiseData = {
+                  cases: +value,
+                  country: country,
+                  date: new Date(Date.parse(dates[index])),
+                };
+                data[country].push(dateWise);
+              });
+            }
+          });
+          return data;
+        })
+      );
   }
 }

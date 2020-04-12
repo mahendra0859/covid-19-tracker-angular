@@ -14,8 +14,12 @@ export class HomeComponent implements OnInit {
   totalDeaths = 0;
   totalRecovered = 0;
   globalData: GlobalDataSummary[];
-  pieChart: GoogleChartInterface;
-  columnChart: GoogleChartInterface;
+  pieChart: GoogleChartInterface = {
+    chartType: "PieChart",
+  };
+  columnChart: GoogleChartInterface = {
+    chartType: "ColumnChart",
+  };
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit() {
@@ -33,13 +37,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  initChart() {
+  initChart(caseType: string = "c") {
     let dataTable = [];
     dataTable.push(["Country", "cases"]);
     this.globalData.forEach((cs) => {
-      if (cs.confirmed > 2000) {
-        dataTable.push([cs.country, cs.confirmed]);
-      }
+      let value: number;
+      if (caseType == "c") if (cs.confirmed > 2000) value = cs.confirmed;
+      if (caseType == "a") if (cs.active > 2000) value = cs.active;
+      if (caseType == "d") if (cs.deaths > 1000) value = cs.deaths;
+      if (caseType == "r") if (cs.recovered > 200) value = cs.recovered;
+      if (value) dataTable.push([cs.country, value]);
     });
     this.pieChart = {
       chartType: "PieChart",
@@ -51,5 +58,12 @@ export class HomeComponent implements OnInit {
       dataTable,
       options: { height: 500 },
     };
+  }
+  updateChart(input: HTMLInputElement) {
+    this.pieChart = null;
+    this.columnChart = null;
+    setTimeout(() => {
+      this.initChart(input.value);
+    }, 5);
   }
 }

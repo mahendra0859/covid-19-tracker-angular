@@ -22,4 +22,27 @@
     [totalDeaths]="totalDeaths"
     [totalActive]="totalActive"
   ></app-case-card>
+  <div class="row">
+    <div class="col">
+      <google-chart [data]="lineChart" *ngIf="lineChart"></google-chart>
+    </div>
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sno.</th>
+            <th>Date</th>
+            <th>Case</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of selectedCountryData; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ data.date | date }}</td>
+            <td>{{ data.cases }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
