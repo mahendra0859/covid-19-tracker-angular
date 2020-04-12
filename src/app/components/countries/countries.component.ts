@@ -69,7 +69,13 @@ export class CountriesComponent implements OnInit {
     this.lineChart = {
       chartType: "LineChart",
       dataTable,
-      options: { title: "Tasks" },
+      options: {
+        title: "Tasks",
+        animation: {
+          duration: 1000,
+          easing: "out",
+        },
+      },
     };
   }
 }

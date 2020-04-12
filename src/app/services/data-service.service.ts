@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { map, catchError } from "rxjs/operators";
+import { throwError } from "rxjs";
 import { GlobalDataSummary } from "../models/global-data";
 import { DateWiseData } from "../models/date-wise-global-data";
 
@@ -9,7 +10,7 @@ import { DateWiseData } from "../models/date-wise-global-data";
 })
 export class DataServiceService {
   private globalDataUrl =
-    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/04-10-2020.csv";
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/04-11-2020.csv";
   private dateWiseGlobalDataUrl =
     "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
   constructor(private http: HttpClient) {}
@@ -45,6 +46,9 @@ export class DataServiceService {
         });
         data = Object.values(raw);
         return data;
+      }),
+      catchError((error) => {
+        return throwError(error);
       })
     );
   }

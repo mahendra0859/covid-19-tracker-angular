@@ -32,7 +32,14 @@ export class HomeComponent implements OnInit {
           this.totalDeaths += cs.deaths;
           this.totalRecovered += cs.active;
         });
-        this.initChart();
+        this.pieChart = null;
+        this.columnChart = null;
+        setTimeout(() => {
+          this.initChart();
+        }, 5);
+      },
+      error: (error) => {
+        console.log("error", error);
       },
     });
   }
@@ -51,12 +58,24 @@ export class HomeComponent implements OnInit {
     this.pieChart = {
       chartType: "PieChart",
       dataTable,
-      options: { height: 500 },
+      options: {
+        height: 500,
+        animation: {
+          duration: 1000,
+          easing: "out",
+        },
+      },
     };
     this.columnChart = {
       chartType: "ColumnChart",
       dataTable,
-      options: { height: 500 },
+      options: {
+        height: 500,
+        animation: {
+          duration: 1000,
+          easing: "out",
+        },
+      },
     };
   }
   updateChart(input: HTMLInputElement) {

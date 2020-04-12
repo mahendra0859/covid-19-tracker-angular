@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.2.
 
+## Demo App
+
+https://mahendra0859.github.io/covid-19-tracker-angular/
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -29,3 +33,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## API Repo
 
 https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data
+
+## Youtube Link
+
+https://www.youtube.com/watch?v=hPJMa1A-VNg&t=193s
